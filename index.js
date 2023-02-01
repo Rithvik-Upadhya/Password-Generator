@@ -9,7 +9,6 @@ let passEl1 = document.querySelector("#passwords p:first-child")
 let passEl2 = document.querySelector("#passwords p:nth-child(2)")
 let passwordsEl = document.getElementById("passwords")
 let passError = document.getElementById("pw-error")
-let copyPrompt = document.getElementById("copy-prompt")
 let randomIndex = 0
 let randomChar = ""
 let characterSet = characters.all
@@ -47,7 +46,7 @@ function pwGen() {
         
         passEl1.textContent = pass1.join("")
         passEl2.textContent = pass2.join("")
-        copyPrompt.textContent = "Click to copy"
+        passwordsEl.classList.add("can-copy")
     }
 }
 

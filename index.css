@@ -197,6 +197,27 @@ p.copied {
     animation-fill-mode: forwards;
 }
 
+#passwords p {
+    position: relative;
+}
+
+#passwords p:after {
+    position: absolute;
+    content: "";
+    right: 0;
+    background-image: url('/copy.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+#passwords.can-copy p:after {
+    opacity: 1;
+}
+
 #passwords {
     position: relative;
 }
