@@ -75,6 +75,7 @@ input#pw_length {
     background-color: var(--bgC2);
     width: 50px;
     color: var(--textC);
+    font-size: 1rem;
 }
 
 .pw_length {
