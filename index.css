@@ -96,8 +96,7 @@ hr {
 
 #passwords {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     grid-gap: 15px;
     gap: 15px;
     margin-top: 15px;
@@ -105,7 +104,7 @@ hr {
 
 #passwords p {
     background-color: var(--bgC2);
-    min-width: 150px;
+    min-width: 250px;
     height: 40px;
     border-radius: 5px;
     display: flex;
@@ -181,14 +180,18 @@ input[type="checkbox"]:not(:checked):focus + label:after {
     color: red;
 }
 
-.copied {
+p.copied {
     position: relative;
     animation-name: copied;
     animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 
-#passwords p:after {
+#passwords {
+    position: relative;
+}
+
+#passwords:after {
     position: absolute;
     content: "Copied!";
     bottom: -30px;
@@ -197,7 +200,7 @@ input[type="checkbox"]:not(:checked):focus + label:after {
     transition: opacity 0.5s ease;
 }
 
-#passwords p.copied:after {
+#passwords.copied:after {
     opacity: 1;
     transition: opacity 0.5s ease;
 }

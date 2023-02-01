@@ -7,6 +7,7 @@ const characters = {
 
 let passEl1 = document.querySelector("#passwords p:first-child")
 let passEl2 = document.querySelector("#passwords p:nth-child(2)")
+let passwordsEl = document.getElementById("passwords")
 let passError = document.getElementById("pw-error")
 
 function getRandomChar() {
@@ -47,15 +48,17 @@ function pwGen() {
 }
 
 function copy() {
-    let passwordEl = event.target
-    let copyText = passwordEl.textContent
+    let passEl = event.currentTarget
+    let copyText = passEl.textContent
     if (!copyText) {
         return
     } else {
         navigator.clipboard.writeText(copyText)
-        passwordEl.classList.add("copied")
+        passEl.classList.add("copied")
+        passwordsEl.classList.add("copied")
         setTimeout(function() {
-            passwordEl.classList.remove("copied")
+            passEl.classList.remove("copied")
+            passwordsEl.classList.remove("copied")
         }, 2000)
     }
 }
