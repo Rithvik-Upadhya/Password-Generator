@@ -27,6 +27,16 @@ section {
     padding: 0 50px;
 }
 
+h1 {
+    font-size: 1.8em;
+}
+
+@media (max-width: 599px) {
+    h1 + p {
+        font-size: 0.9em;
+    }
+}
+
 h1 span {
    color: var(--accentC);
 }

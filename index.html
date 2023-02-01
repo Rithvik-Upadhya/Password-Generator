@@ -19,7 +19,7 @@
                 <p>Never use an insecure password again.</p>
                 <div class="form-group pw_length">
                 <label for="pw_length">Length</label>
-                <input type="number" id="pw_length" min="10" max="20" value="10" required="true"/>
+                <input type="number" id="pw_length" min="10" max="20" value="12" required="true"/>
                 </div>
                 <div class="form-group">
                 <input type="checkbox" id="pw_specials" checked="true">
@@ -32,6 +32,7 @@
                 <p id="pw-error"></p>
                 <button id="pw_gen" onclick="pwGen()">Generate Password</button>
                 <hr>
+                <p id="copy-prompt"></p>
                 <div id="passwords">
                     <p onclick="copy()"></p>
                     <p onclick="copy()"></p>

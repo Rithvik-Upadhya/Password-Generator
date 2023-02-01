@@ -9,22 +9,14 @@ let passEl1 = document.querySelector("#passwords p:first-child")
 let passEl2 = document.querySelector("#passwords p:nth-child(2)")
 let passwordsEl = document.getElementById("passwords")
 let passError = document.getElementById("pw-error")
+let copyPrompt = document.getElementById("copy-prompt")
+let randomIndex = 0
+let randomChar = ""
+let characterSet = characters.all
 
-function getRandomChar() {
-    let characterSet = characters.all
-    let pwSpecials = document.getElementById("pw_specials").checked
-    let pwNumbers = document.getElementById("pw_numbers").checked
-    if (pwSpecials && pwNumbers) {
-        characterSet = characters.all
-    } else if (pwSpecials === false && pwNumbers === false) {
-        characterSet = characters.alphabets
-    } else if (pwSpecials === true && pwNumbers === false) {
-        characterSet = characters.withSymbols
-    } else if (pwSpecials === false && pwNumbers === true) {
-        characterSet = characters.withNumbers
-    }
-    randomIndex = Math.floor( Math.random() * characterSet.length )
-    randomChar = characterSet[randomIndex]
+function getRandomChar(charSet) {
+    randomIndex = Math.floor( Math.random() * charSet.length )
+    randomChar = charSet[randomIndex]
     return randomChar
 }
 
@@ -36,14 +28,26 @@ function pwGen() {
         passError.textContent = "Please enter a length between 10 and 20"
     } else {
         passError.textContent = ""
+        let pwSpecials = document.getElementById("pw_specials").checked
+        let pwNumbers = document.getElementById("pw_numbers").checked
+        if (pwSpecials && pwNumbers) {
+            characterSet = characters.all
+        } else if (pwSpecials === false && pwNumbers === false) {
+            characterSet = characters.alphabets
+        } else if (pwSpecials === true && pwNumbers === false) {
+            characterSet = characters.withSymbols
+        } else if (pwSpecials === false && pwNumbers === true) {
+            characterSet = characters.withNumbers
+        }
         
         for (i = 0; i < pwLength; i++) {
-            pass1.push(getRandomChar())
-            pass2.push(getRandomChar())
+            pass1.push(getRandomChar(characterSet))
+            pass2.push(getRandomChar(characterSet))
         }
         
         passEl1.textContent = pass1.join("")
         passEl2.textContent = pass2.join("")
+        copyPrompt.textContent = "Click to copy"
     }
 }
 
