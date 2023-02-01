@@ -7,8 +7,10 @@ const characters = {
 
 let passEl1 = document.querySelector("#passwords p:first-child")
 let passEl2 = document.querySelector("#passwords p:nth-child(2)")
+var passEls = document.querySelectorAll("#passwords p")
 let passwordsEl = document.getElementById("passwords")
 let passError = document.getElementById("pw-error")
+let passGen = document.getElementById("pw_gen")
 let randomIndex = 0
 let randomChar = ""
 let characterSet = characters.all
@@ -19,7 +21,7 @@ function getRandomChar(charSet) {
     return randomChar
 }
 
-function pwGen() {
+passGen.addEventListener("click", function() {
     let pass1 = []
     let pass2 = []
     let pwLength = parseInt(document.getElementById("pw_length").value)
@@ -48,20 +50,21 @@ function pwGen() {
         passEl2.textContent = pass2.join("")
         passwordsEl.classList.add("can-copy")
     }
-}
+})
 
-function copy() {
-    let passEl = event.currentTarget
-    let copyText = passEl.textContent
-    if (!copyText) {
-        return
-    } else {
-        navigator.clipboard.writeText(copyText)
-        passEl.classList.add("copied")
-        passwordsEl.classList.add("copied")
-        setTimeout(function() {
-            passEl.classList.remove("copied")
-            passwordsEl.classList.remove("copied")
-        }, 2000)
-    }
-}
+passEls.forEach(function(passEl) {
+    passEl.addEventListener("click", function() {
+        let copyText = passEl.textContent
+        if (!copyText) {
+            return
+        } else {
+            navigator.clipboard.writeText(copyText)
+            passEl.classList.add("copied")
+            passwordsEl.classList.add("copied")
+            setTimeout(function() {
+                passEl.classList.remove("copied")
+                passwordsEl.classList.remove("copied")
+            }, 2000)
+        }
+    })
+})
