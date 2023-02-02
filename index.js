@@ -5,15 +5,20 @@ const characters = {
     withSymbols: ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"]
 };
 
-let passEl1 = document.querySelector("#passwords p:first-child");
-let passEl2 = document.querySelector("#passwords p:nth-child(2)");
+const passwordsEl = document.getElementById("passwords");
 var passEls = document.querySelectorAll("#passwords p");
-let passwordsEl = document.getElementById("passwords");
-let passError = document.getElementById("pw-error");
-let passGen = document.getElementById("pw_gen");
+const passEl1 = document.querySelector("#passwords p:first-child");
+const passEl2 = document.querySelector("#passwords p:nth-child(2)");
+let pass1 = [];
+let pass2 = [];
+const passError = document.getElementById("pw-error");
+const passGen = document.getElementById("pw_gen");
+let pwSpecials;
+let pwNumbers;
 let randomIndex;
 let randomChar;
 let characterSet = characters.all;
+let copyText;
 
 function getRandomChar(charSet) {
     randomIndex = Math.floor( Math.random() * charSet.length );
@@ -22,15 +27,15 @@ function getRandomChar(charSet) {
 };
 
 passGen.addEventListener("click", function() {
-    let pass1 = [];
-    let pass2 = [];
+    pass1 = [];
+    pass2 = [];
     let pwLength = parseInt(document.getElementById("pw_length").value);
     if (!pwLength || pwLength < 10 || pwLength > 20) {
         passError.textContent = "Please enter a length between 10 and 20";
     } else {
         passError.textContent = "";
-        let pwSpecials = document.getElementById("pw_specials").checked;
-        let pwNumbers = document.getElementById("pw_numbers").checked;
+        pwSpecials = document.getElementById("pw_specials").checked;
+        pwNumbers = document.getElementById("pw_numbers").checked;
         if (pwSpecials && pwNumbers) {
             characterSet = characters.all;
         } else if (pwSpecials === false && pwNumbers === false) {
@@ -54,7 +59,7 @@ passGen.addEventListener("click", function() {
 
 passEls.forEach(function(passEl) {
     passEl.addEventListener("click", function() {
-        let copyText = passEl.textContent;
+        copyText = passEl.textContent;
         if (!copyText) {
             return;
         } else {

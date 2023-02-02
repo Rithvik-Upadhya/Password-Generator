@@ -15,6 +15,7 @@ body {
     background-color: var(--bgC);
     color: var(--textC);
     font-weight: 300;
+    min-width: 375px;
 }
 
 section {
